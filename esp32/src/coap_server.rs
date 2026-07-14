@@ -13,8 +13,10 @@ pub fn run_coap_server(led: Arc<Mutex<PinDriver<'static, Output>>>) -> Result<()
         let Ok(packet) = Packet::from_bytes(&buf[..size]) else { continue };
         
         let mut request = CoapRequest::from_packet(packet, src);
+        let path = request.get_path();
+        log::info!("Received CoAP request from {} with path: {}", src, path);
         
-        let response_code = match (request.message.header.code, request.get_path().as_str()) {
+        let response_code = match (request.message.header.code, path.as_str()) {
             (MessageClass::Request(RequestType::Post), "led/on") => {
                 let _ = led.lock().unwrap().set_high();
                 ResponseType::Changed
@@ -22,9 +24,8 @@ pub fn run_coap_server(led: Arc<Mutex<PinDriver<'static, Output>>>) -> Result<()
             (MessageClass::Request(RequestType::Post), "led/off") => {
                 let _ = led.lock().unwrap().set_low();
                 ResponseType::Changed
-            }
-            (MessageClass::Request(RequestType::Post), _) => ResponseType::NotFound,
-            _ => ResponseType::MethodNotAllowed,
+            },
+            _ => ResponseType::NotFound,
         };
 
         let Some(ref mut response) = request.response else { continue };

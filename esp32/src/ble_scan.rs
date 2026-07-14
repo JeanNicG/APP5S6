@@ -40,7 +40,6 @@ pub async fn run_ble_scan(tx: mpsc::SyncSender<String>) -> Result<()> {
             {
             let _ = tx.try_send(uuid);
             }
-        // Give Wi-Fi 3 full seconds of 100% uninterrupted antenna time between scans
         esp_idf_svc::hal::delay::FreeRtos::delay_ms(3000);
     }
 }

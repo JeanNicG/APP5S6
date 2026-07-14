@@ -1,8 +1,8 @@
 {
-  "name": "api",
+  "name": "relai_mqtt",
   "version": "1.0.0",
   "description": "",
-  "main": "api.js",
+  "main": "client.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,9 +11,8 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "express": "^5.2.1",
-    "cors": "^2.8.5",
-    "coap": "*",
-    "mqtt": "^5.0.0"
+    "mqtt": "^5.0.0",
+    "dotenv": "^16.4.5",
+    "ws": "^8.21.0"
   }
 }

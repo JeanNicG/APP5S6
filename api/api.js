@@ -1,13 +1,14 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const controlRoutes = require('./routes/control');
-
+const archiveRoutes = require('./routes/archive');
+app.use(cors());
 app.use(express.json());
 
-// Routes
 app.use('/control', controlRoutes);
-
-const PORT = process.env.PORT || 3000;
+app.use('/archive', archiveRoutes);
+const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`API Server is running on port ${PORT}`);
 });
