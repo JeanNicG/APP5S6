@@ -32,12 +32,6 @@ cd relai_mqtt
 node client.js
 ```
 
-## relai_mqtt
-```
-cd relai_mqtt
-node client.js
-```
-
 ## server mqtt
 ```
 sudo systemctl enable --now mosquitto
