@@ -38,3 +38,10 @@ sudo systemctl enable --now mosquitto
 sudo systemctl status mosquitto
 mosquitto_sub -t "esp32/uuid" -d
 ```
+
+## frontend
+
+``` 
+cd frontend
+trunk serve
+```
