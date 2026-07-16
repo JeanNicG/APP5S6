@@ -1,0 +1,37 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    ports:
+      - "1883:1883"
+    restart: always
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+
+  api:
+    build: ./api
+    ports:
+      - "3000:3000"
+    environment:
+      - MQTT_BROKER_URL
+    depends_on:
+      - mosquitto
+    restart: always
+    volumes:
+      - ./uuid.json:/app/uuid.json
+
+  relai_mqtt:
+    build: ./relai_mqtt
+    environment:
+      - MQTT_BROKER_URL
+      - WS_IP
+    depends_on:
+      - mosquitto
+    restart: always
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+    restart: always

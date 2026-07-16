@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const fs = require('fs');
-const mqtt = require('mqtt').connect('mqtt://localhost');
+const mqtt = require('mqtt').connect(process.env.MQTT_BROKER_URL);
 
 let uuids = fs.existsSync('uuid.json') ? JSON.parse(fs.readFileSync('uuid.json')) : [];
 

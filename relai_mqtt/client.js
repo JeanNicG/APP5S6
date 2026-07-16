@@ -2,7 +2,8 @@ require('dotenv').config();
 const WebSocket = require('ws');
 const mqtt = require('mqtt');
 
-const mqttClient = mqtt.connect('mqtt://localhost');
+const mqttBrokerUrl = process.env.MQTT_BROKER_URL || 'mqtt://localhost';
+const mqttClient = mqtt.connect(mqttBrokerUrl);
 const wsIp = process.env.WS_IP;
 const ws = new WebSocket(`ws://${wsIp}:8080`);
 
@@ -14,5 +15,11 @@ ws.on('message', (data) => {
     }
 });
 
-ws.on('error', console.error);
+ws.on('error', (err) => {
+    console.error(err);
+    process.exit(1);
+});
+
+ws.on('close', () => process.exit(1));
+
 mqttClient.on('error', console.error);

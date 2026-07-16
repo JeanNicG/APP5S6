@@ -6,7 +6,7 @@ use yew::prelude::*;
 
 #[function_component(App)]
 fn app() -> Html {
-    let archive_data = use_state(|| String::from("No data fetched yet. Click the button."));
+    let archive_data = use_state(String::new);
     let is_on = use_state(|| false);
 
     let ad = archive_data.clone();
