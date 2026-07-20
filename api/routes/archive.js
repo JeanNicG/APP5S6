@@ -1,3 +1,9 @@
+/**
+    author: Jean-Nicolas Gosselin, Anahì Michelle Mongelos Toledo
+    cip: gosj2008, mona3503
+    date: 2026-07-20
+**/
+
 const router = require('express').Router();
 const fs = require('fs');
 const mqtt = require('mqtt').connect(process.env.MQTT_BROKER_URL);

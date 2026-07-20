@@ -1,3 +1,9 @@
+/**
+    author: Jean-Nicolas Gosselin, Anahì Michelle Mongelos Toledo
+    cip: gosj2008, mona3503
+    date: 2026-07-20
+**/
+
 use anyhow::Result;
 use esp32_nimble::{BLEDevice, BLEScan};
 use log::info;

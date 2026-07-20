@@ -1,3 +1,9 @@
+/**
+    author: Jean-Nicolas Gosselin, Anahì Michelle Mongelos Toledo
+    cip: gosj2008, mona3503
+    date: 2026-07-20
+**/
+
 use anyhow::Result;
 use coap_lite::{CoapRequest, MessageClass, MessageType, Packet, RequestType, ResponseType};
 use esp_idf_svc::hal::gpio::{Output, PinDriver};

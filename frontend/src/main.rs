@@ -1,3 +1,9 @@
+/**
+    author: Jean-Nicolas Gosselin, Anahì Michelle Mongelos Toledo
+    cip: gosj2008, mona3503
+    date: 2026-07-20
+**/
+
 mod api_call;
 
 use api_call::{fetch_archive, set_device_status};
